@@ -1,24 +1,18 @@
-import { Grid, GridItem } from '@chakra-ui/react'
-
 import Header from '../../partials/components/Header/Header'
 import LeftSide from '../../partials/components/LeftSide/LeftSide'
 const Home = () =>{
     return(
         <div>
             <Header />
-            <Grid
-                h='91vh'
-                templateRows='repeat(2, 1fr)'
-                templateColumns='repeat(5, 1fr)'
-                gap={2}
-                >
-                <GridItem rowSpan={2} colSpan={1} bg='tomato'>
+            <div className='row'>
+                <div className='col-md-3 col-lg-3'>
                     <LeftSide />
-                </GridItem>
-                <GridItem colSpan={4} bg='papayawhip' >
+                </div>
+                <div className='col-md-9 col-lg-9'>
 
-                </GridItem>
-                </Grid>
+                </div>
+            </div>
+           
         </div>
     )
 }
