@@ -18,14 +18,16 @@ const LeftSide = () => {
     {
       id: 1,
       title: "Content 1",
+      text:"localhost:3000/get1",
       apicalls: [
         {
           id: "1a",
           title: "Test 1 A",
+          text:"localhost:3000/get1a"
         },
         { id: "1b", 
         title: "Test 1 B", 
-        text: "Lorem Ipsum Data" 
+        text: "localhost:3000/get2b" 
       }
       ]
     },
@@ -36,15 +38,18 @@ const LeftSide = () => {
         {
           id: "1b",
           title: "Test 1 B",
+          text:"localhost:3000/get2",
           apicalls: [
             {
               id: "1ba",
               title: "Test 1 A B",
-              text: "Lorem Ipsum Data"
+              text: "localhost:3000/get2a"
             }
           ]
         },
-        { id: "1b", title: "Test 1 B", text: "Lorem Ipsum Data" }
+        { id: "1b", 
+        title: "Test 1 B", 
+        text: "localhost:3000/get2b" }
       ]
     }
   ];
@@ -91,7 +96,11 @@ const LeftSide = () => {
                   return <FolderView {...item} key={`collapse-${index}`} />;
                 })}
               </div> }
-              {currentView === 'ApiView' && <ApiView /> }
+              {currentView === 'ApiView' && <div>
+              {LIST.map((item, index) => {
+                  return <ApiView {...item} key={`collapse-${index}`} />;
+                })}
+                </div>}
               {currentView === 'HistoryView' && <HistoryView /> }
                 
             </Flex>
