@@ -1,13 +1,13 @@
 import { useState } from 'react'
 import { Box, Flex, Stack } from '@chakra-ui/react'
 import {IconButton, Button} from '@chakra-ui/button'
-import {FaFolderOpen, FaCloudsmith, FaBoxOpen, FaServer, FaHistory, FaUserAlt} from 'react-icons/fa'
+import {FaFolderOpen, FaCloudsmith, FaHistory, FaUserAlt} from 'react-icons/fa'
 import ApiView from './components/ApiView/ApiView';
 import FolderView from './components/FolderView/FolderView';
 import HistoryView from './components/HistoryView/HistoryView';
 
 
-const LeftSide = () => {
+const LeftSide = ({currentCall}) => {
   const [currentView, setCuurentView] = useState("FolderView");
 
   const handleView = (e) =>{
@@ -19,15 +19,19 @@ const LeftSide = () => {
       id: 1,
       title: "Content 1",
       text:"localhost:3000/get1",
+      apiTitle:"get-product1",
       apicalls: [
         {
           id: "1a",
           title: "Test 1 A",
-          text:"localhost:3000/get1a"
+          text:"localhost:3000/get1a",
+          apiTitle:"",
+
         },
         { id: "1b", 
         title: "Test 1 B", 
-        text: "localhost:3000/get2b" 
+        text: "localhost:3000/get2b",
+        apiTitle:"get-product2b",
       }
       ]
     },
@@ -39,17 +43,21 @@ const LeftSide = () => {
           id: "1b",
           title: "Test 1 B",
           text:"localhost:3000/get2",
+          apiTitle:"",
           apicalls: [
             {
               id: "1ba",
               title: "Test 1 A B",
-              text: "localhost:3000/get2a"
+              text: "localhost:3000/get2a",
+              apiTitle:"",
             }
           ]
         },
         { id: "1b", 
         title: "Test 1 B", 
-        text: "localhost:3000/get2b" }
+        text: "localhost:3000/get2b",
+        apiTitle:"",
+      }
       ]
     }
   ];
@@ -93,12 +101,12 @@ const LeftSide = () => {
             <Flex flexDir="column" as="nav" pt="10"  >
               {currentView === 'FolderView' &&  <div>
                 {LIST.map((item, index) => {
-                  return <FolderView {...item} key={`collapse-${index}`} />;
+                  return <FolderView {...item} key={`collapse-${index}`} currentCall={currentCall} />;
                 })}
               </div> }
               {currentView === 'ApiView' && <div>
               {LIST.map((item, index) => {
-                  return <ApiView {...item} key={`collapse-${index}`} />;
+                  return <ApiView {...item} key={`collapse-${index}`} currentCall={currentCall} />;
                 })}
                 </div>}
               {currentView === 'HistoryView' && <HistoryView /> }

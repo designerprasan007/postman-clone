@@ -1,6 +1,5 @@
 
 const ApiView = ({text, apicalls, id, ...props}) => {
-  console.log(id)
   return (
     <div>
       {text}

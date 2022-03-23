@@ -26,5 +26,10 @@
 .CollapseText {
   font-weight: 400;
   font-size: 14px;
-  padding: 18px;
+  padding: 2px;
+}
+
+.apiText {
+  padding: 2px 2px 2px 2px;
+  cursor: pointer;
 }

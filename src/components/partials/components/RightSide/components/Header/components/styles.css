@@ -1,0 +1,17 @@
+.top-header-outer {
+  display: flex;
+}
+.top-header-tabs {
+  border-left: 1px solid gray;
+  border-right: 1px solid gray;
+  border-top: 2px solid white;
+  width: 150px;
+  margin-right: 2px;
+  padding: 2px;
+}
+.top-header-name {
+  display: inline-flex;
+  padding: 3px;
+  /* text-overflow: ellipsis; */
+  /* width: 100px; */
+}
