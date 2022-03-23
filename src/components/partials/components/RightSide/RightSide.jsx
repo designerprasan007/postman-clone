@@ -1,8 +1,8 @@
 import TopHeader from "./components/Header/components/TopHeader"
 
-const RightSide = ({currentApi}) => {
+const RightSide = ({currentApi, handleRemoveTab}) => {
   return (
-    <TopHeader currentApi={currentApi} />
+    <TopHeader currentApi={currentApi} handleRemoveTab={handleRemoveTab} />
   )
 }
 

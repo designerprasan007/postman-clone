@@ -15,3 +15,6 @@
   /* text-overflow: ellipsis; */
   /* width: 100px; */
 }
+.close-current-tab {
+  cursor: pointer;
+}

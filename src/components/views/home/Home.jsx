@@ -5,6 +5,7 @@ import RightSide from '../../partials/components/RightSide/RightSide'
 const Home = () =>{
     const [showRighView, setShowRightView] = useState(false)
     const [currentApi, setCurrentApi] = useState([])
+
     const currentCall = (e) =>{
         setShowRightView(true)
         // const apiCallValue = e.target.dataset.apiCall ? e.target.dataset.apiCall : e.target.textContent   
@@ -18,6 +19,9 @@ const Home = () =>{
         }
     }
    
+    const handleRemoveTab = (e) =>{
+        console.log(e.target)
+    }
     return(
         <div>
             <Header />
@@ -26,7 +30,7 @@ const Home = () =>{
                     <LeftSide currentCall={currentCall} />
                 </div>
                 <div className='col-md-9 col-lg-9'>
-                    {showRighView && <RightSide currentApi={currentApi}  />}
+                    {showRighView && <RightSide handleRemoveTab={handleRemoveTab} currentApi={currentApi}  />}
                     
                 </div>
             </div>
