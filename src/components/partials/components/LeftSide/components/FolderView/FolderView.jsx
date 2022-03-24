@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import { FaAngleRight, FaAngleDown } from "react-icons/fa";
 
 import './styles.css'
-const FolderView = ({ title, text, apiTitle, apicalls, currentCall, ...props }) => {
+const FolderView = ({ title, text, apiTitle, id, apicalls, currentCall, ...props }) => {
   const [isopen, setisopen] = useState("false");
   const toggleCollapse = () => {
     setisopen(isopen === 'false' ? 'true' : 'false');
@@ -28,7 +28,7 @@ const FolderView = ({ title, text, apiTitle, apicalls, currentCall, ...props }) 
            </button>
            <div className='CollapseContent' ref={content} style={{maxHeight: height}}>
              <div className='CollapseText'>
-                <p onClick={currentCall} className="apiText" data-api-call={text}>
+                <p onClick={currentCall} className="apiText" data-api-call={text} data-api-id={id}>
                   {apiTitle ? apiTitle : text }
                   </p>
                 {apicalls?.map((datumn, index) => (

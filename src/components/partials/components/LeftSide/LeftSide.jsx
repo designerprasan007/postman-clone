@@ -7,62 +7,13 @@ import FolderView from './components/FolderView/FolderView';
 import HistoryView from './components/HistoryView/HistoryView';
 
 
-const LeftSide = ({currentCall}) => {
+const LeftSide = ({currentCall, LIST}) => {
   const [currentView, setCuurentView] = useState("FolderView");
 
   const handleView = (e) =>{
     setCuurentView(e)
   }
-
-  const LIST = [
-    {
-      id: 1,
-      title: "Content 1",
-      text:"localhost:3000/get1",
-      apiTitle:"get-product1",
-      apicalls: [
-        {
-          id: "1a",
-          title: "Test 1 A",
-          text:"localhost:3000/get1a",
-          apiTitle:"",
-
-        },
-        { id: "1b", 
-        title: "Test 1 B", 
-        text: "localhost:3000/get2b",
-        apiTitle:"get-product2b",
-      }
-      ]
-    },
-    {
-      id: 2,
-      title: "Content 2",
-      apicalls: [
-        {
-          id: "1b",
-          title: "Test 1 B",
-          text:"localhost:3000/get2",
-          apiTitle:"",
-          apicalls: [
-            {
-              id: "1ba",
-              title: "Test 1 A B",
-              text: "localhost:3000/get2a",
-              apiTitle:"",
-            }
-          ]
-        },
-        { id: "1b", 
-        title: "Test 1 B", 
-        text: "localhost:3000/get2b",
-        apiTitle:"",
-      }
-      ]
-    }
-  ];
   
-
   return (
     <Flex pos="sticky" flexDir="column" justifyContent="space-between" textAlign="start" pt="10" bg="orange.500" color="white" h="90vh" borderEnd="1px">
         <div className='col-12'>
