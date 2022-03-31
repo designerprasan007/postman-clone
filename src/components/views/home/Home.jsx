@@ -7,46 +7,52 @@ const Home = () =>{
     const [currentApi, setCurrentApi] = useState([])
     const LIST = [
         {
-          id: 1,
+          id: '1',
           title: "Content 1",
           text:"localhost:3000/get1",
+          method:"get",
           apiTitle:"get-product1",
           apicalls: [
             {
               id: "1a",
               title: "Test 1 A",
               text:"localhost:3000/get1a",
+              method:"get",
               apiTitle:"",
     
             },
             { id: "1b", 
             title: "Test 1 B", 
-            text: "localhost:3000/get2b",
+            text: "localhost:3000/get1b",
+            method:"get",
             apiTitle:"get-product2b",
           }
           ]
         },
         {
-          id: 2,
+          id: '2',
           title: "Content 2",
           apicalls: [
             {
-              id: "1b",
+              id: "2b",
               title: "Test 1 B",
               text:"localhost:3000/get2",
+              method:"get",
               apiTitle:"",
               apicalls: [
                 {
-                  id: "1ba",
+                  id: "2b",
                   title: "Test 1 A B",
                   text: "localhost:3000/get2a",
+                  method:"get",
                   apiTitle:"",
                 }
               ]
             },
-            { id: "1b", 
+            { id: "2c", 
             title: "Test 1 B", 
             text: "localhost:3000/get2b",
+            method:"get",
             apiTitle:"",
           }
           ]
@@ -54,27 +60,25 @@ const Home = () =>{
       ];
     const currentCall = (e) =>{
         setShowRightView(true)
-        const apiCallValue = {
-            callName: e.target.textContent,
-            apiCall : e.target.dataset.apiCall,
-            apiId : e.target.dataset.apiId
-        } 
-        const preValue = currentApi.some((ele) => (ele.callName === apiCallValue.callName || ele.apiCall === apiCallValue.callName));
+        let callName = e.target.textContent;
+        // let apiCall  = e.target.dataset.apiCall;
+        let apiId  = e.target.dataset.apiId;
+
+        const preValue = currentApi.some((ele) => (ele.apiTitle === callName || ele.text === callName));
         if(!preValue){
             const search = (data, id) => {
                 var f, s = (d, id) => d?.find(x => x.id == id ? f = x : s(x.apicalls, id))	
                 s(data, id)
                 return f
               }
-              console.log(search(LIST, apiCallValue.apiId))
-            setCurrentApi(currentApi => [...currentApi, apiCallValue])
+              const checkVal = search(LIST, apiId) 
+            setCurrentApi(currentApi => [...currentApi, checkVal])
         }
     }
    
     const handleRemoveTab = (e) =>{
-        const calledApi = e.target.dataset.apicall 
-        setCurrentApi(currentApi.filter((call) => call.apiCall !== calledApi))
-
+        const calledApi = e.target.dataset.text 
+        setCurrentApi(currentApi.filter((call) => call.text !== calledApi))
     }
    
     return(

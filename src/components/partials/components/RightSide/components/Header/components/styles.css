@@ -1,13 +1,17 @@
 .top-header-outer {
   display: flex;
   border-top: 2px solid white;
+  border-bottom: 1px solid black;
 }
 .top-header-tabs {
-  border-left: 1px solid gray;
-  border-right: 1px solid gray;
+  /* border-left: 1px solid gray;
+  border-right: 1px solid gray; */
   width: 200px;
   padding: 2px;
   cursor: pointer;
+  border-style: solid;
+  border-width: 0 1px 0;
+  border-color: gray;
 }
 .active-tab {
   border-top: 4px solid white;
@@ -31,4 +35,10 @@
 
 .close-tab-icon {
   pointer-events: none;
+}
+
+
+.api-header-main{
+  border-top: 2px solid white;
+  border-bottom: 1px solid black;
 }
