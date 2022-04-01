@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import { FaAngleRight, FaAngleDown } from "react-icons/fa";
 
 import './styles.css'
-const FolderView = ({ title, text, apiTitle, id, apicalls, currentCall, ...props }) => {
+const FolderView = ({ title, text, apiTitle, id, apicalls, currentCall, currentActiveTab, ...props }) => {
   const [isopen, setisopen] = useState("false");
   const toggleCollapse = () => {
     setisopen(isopen === 'false' ? 'true' : 'false');

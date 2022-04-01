@@ -1,29 +1,31 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Header from '../../partials/components/Header/Header'
 import LeftSide from '../../partials/components/LeftSide/LeftSide'
 import RightSide from '../../partials/components/RightSide/RightSide'
 const Home = () =>{
     const [showRighView, setShowRightView] = useState(false)
     const [currentApi, setCurrentApi] = useState([])
+    const [calledApi, setcalledApi] = useState()
+
     const LIST = [
         {
           id: '1',
           title: "Content 1",
-          text:"localhost:3000/get1",
+          text:"http://localhost:3000/get1",
           method:"get",
           apiTitle:"get-product1",
           apicalls: [
             {
               id: "1a",
               title: "Test 1 A",
-              text:"localhost:3000/get1a",
+              text:"http://localhost:3000/get1a",
               method:"get",
               apiTitle:"",
     
             },
             { id: "1b", 
             title: "Test 1 B", 
-            text: "localhost:3000/get1b",
+            text: "http://localhost:3000/get1b",
             method:"get",
             apiTitle:"get-product2b",
           }
@@ -36,14 +38,14 @@ const Home = () =>{
             {
               id: "2b",
               title: "Test 1 B",
-              text:"localhost:3000/get2",
+              text:"http://localhost:3000/get2",
               method:"get",
               apiTitle:"",
               apicalls: [
                 {
                   id: "2b",
                   title: "Test 1 A B",
-                  text: "localhost:3000/get2a",
+                  text: "http://localhost:3000/get2a",
                   method:"get",
                   apiTitle:"",
                 }
@@ -51,28 +53,36 @@ const Home = () =>{
             },
             { id: "2c", 
             title: "Test 1 B", 
-            text: "localhost:3000/get2b",
+            text: "http://localhost:3000/get2b",
             method:"get",
             apiTitle:"",
           }
           ]
         }
       ];
+      
+      
+    useEffect(() =>{
+      const last_element = currentApi.findLast((item) => true);
+      currentActiveTab(last_element?.text, true)
+    },[currentApi])
+
     const currentCall = (e) =>{
         setShowRightView(true)
         let callName = e.target.textContent;
-        // let apiCall  = e.target.dataset.apiCall;
+        let apiCall  = e.target.dataset.apiCall;
         let apiId  = e.target.dataset.apiId;
 
         const preValue = currentApi.some((ele) => (ele.apiTitle === callName || ele.text === callName));
         if(!preValue){
             const search = (data, id) => {
-                var f, s = (d, id) => d?.find(x => x.id == id ? f = x : s(x.apicalls, id))	
+                var f, s = (d, id) => d?.find(x => x.id === id ? f = x : s(x.apicalls, id))	
                 s(data, id)
                 return f
               }
               const checkVal = search(LIST, apiId) 
             setCurrentApi(currentApi => [...currentApi, checkVal])
+            currentActiveTab(apiCall, true)
         }
     }
    
@@ -80,16 +90,25 @@ const Home = () =>{
         const calledApi = e.target.dataset.text 
         setCurrentApi(currentApi.filter((call) => call.text !== calledApi))
     }
+
+    const currentActiveTab = (e, isNested) =>{
+      const validCall = isNested ? e : e.target.dataset.text
+      setcalledApi('')
+      let activeTab = currentApi.filter((el) => el.text === validCall)
+      setcalledApi(activeTab)
+      Array.from(document.querySelectorAll('.top-header-tabs')).forEach((el) => el.classList.remove('active-tab'));
+      !isNested && e.target.parentNode.parentNode.classList.add('active-tab')
+    }
    
     return(
         <div>
             <Header />
             <div className='row g-0'>
                 <div className='col-md-3 col-lg-3'>
-                    <LeftSide currentCall={currentCall} LIST={LIST} />
+                    <LeftSide currentCall={currentCall} LIST={LIST} currentActiveTab={currentActiveTab} />
                 </div>
                 <div className='col-md-9 col-lg-9'>
-                    {showRighView && <RightSide handleRemoveTab={handleRemoveTab} currentApi={currentApi}  />}
+                    {showRighView && <RightSide handleRemoveTab={handleRemoveTab} currentActiveTab={currentActiveTab} calledApi={calledApi} currentApi={currentApi}  />}
                     
                 </div>
             </div>

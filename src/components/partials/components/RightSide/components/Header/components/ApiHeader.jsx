@@ -1,26 +1,30 @@
-import { Select, Stack } from '@chakra-ui/react'
+import { Select, Stack,Box, Input,Button } from '@chakra-ui/react'
 import './styles.css'
 
 const ApiHeader = ({calledApi}) => {
-  console.log(calledApi) 
+  const handleUrl = (e) => {
+    console.log(e.target.value)
+  }
   return (
-    <div className='row g-1 api-header-main'>
-      <div className='col-md-1'>
+    <Box className='row g-1 api-header-main'>
+      <Box className='col-md-1'>
         <Stack>
-          <Select placeholder={calledApi[0]?.method ? calledApi[0]?.method.toUpperCase() : 'Method'}>
-            <option value='option1'>Option 1</option>
-            <option value='option2'>Option 2</option>
-            <option value='option3'>Option 3</option>
+          <Select className='api-header-input' placeholder={calledApi[0]?.method ? calledApi[0]?.method?.toUpperCase() : 'Method'}>
+            <option value='GET'>GET</option>
+            <option value='POST'>POST</option>
+            <option value='PUT'>PUT</option>
+            <option value='PATCH'>PATCH</option>
+            <option value='DELETE'>DELETE</option>
         </Select>
         </Stack>
-      </div>
-      <div className='col-md-10'>
-        url
-      </div> 
-      <div className='col-md-1'>
-        send
-      </div>
-    </div>
+      </Box>
+      <Box className='col-md-10'>
+        <Input className='api-header-input' placeholder='medium size' onChange={handleUrl} variant='outline' value={calledApi[0]?.text ? calledApi[0]?.text : ""} size='md' />
+      </Box> 
+      <Box className='col-md-1'>
+        <Button colorScheme='blue' size='md'>Send</Button>
+      </Box>
+    </Box>
   )
 }
 

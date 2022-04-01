@@ -7,7 +7,7 @@ import FolderView from './components/FolderView/FolderView';
 import HistoryView from './components/HistoryView/HistoryView';
 
 
-const LeftSide = ({currentCall, LIST}) => {
+const LeftSide = ({currentCall, currentActiveTab, LIST}) => {
   const [currentView, setCuurentView] = useState("FolderView");
 
   const handleView = (e) =>{
@@ -52,12 +52,12 @@ const LeftSide = ({currentCall, LIST}) => {
             <Flex flexDir="column" as="nav" pt="10"  >
               {currentView === 'FolderView' &&  <div>
                 {LIST.map((item, index) => {
-                  return <FolderView {...item} key={`collapse-${index}`} currentCall={currentCall} />;
+                  return <FolderView {...item} key={`collapse-${index}`} currentActiveTab={currentActiveTab} currentCall={currentCall} />;
                 })}
               </div> }
               {currentView === 'ApiView' && <div>
               {LIST.map((item, index) => {
-                  return <ApiView {...item} key={`collapse-${index}`} currentCall={currentCall} />;
+                  return <ApiView {...item} key={`collapse-${index}`} currentActiveTab={currentActiveTab} currentCall={currentCall} />;
                 })}
                 </div>}
               {currentView === 'HistoryView' && <HistoryView /> }
