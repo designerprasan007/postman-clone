@@ -36,3 +36,16 @@ export const removeLocalStorage = (key) => {
     return localStorage.removeItem(key);
   }
 };
+
+export const getParams = (url) => {
+  if (window !== "undefined") {
+    var params = {};
+    url
+      ?.split("?")[1]
+      ?.split("&")
+      ?.forEach(function (i) {
+        params[i?.split("=")[0]] = i?.split("=")[1];
+      });
+    return params;
+  }
+};

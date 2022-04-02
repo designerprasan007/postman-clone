@@ -1,5 +1,5 @@
 import { Select, Stack,Box, Input,Button } from '@chakra-ui/react'
-import './styles.css'
+import '../styles.css'
 
 const ApiHeader = ({calledApi}) => {
   const handleUrl = (e) => {

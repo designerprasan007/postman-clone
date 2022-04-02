@@ -1,4 +1,4 @@
-import './styles.css'
+import '../styles.css'
 import { MdClose } from "react-icons/md";
 import { Tooltip } from '@chakra-ui/react'
 

@@ -11,7 +11,7 @@ const Home = () =>{
         {
           id: '1',
           title: "Content 1",
-          text:"http://localhost:3000/get1",
+          text:"http://localhost:3000/get1?param1=a&param2=b",
           method:"get",
           apiTitle:"get-product1",
           apicalls: [
@@ -65,6 +65,7 @@ const Home = () =>{
     useEffect(() =>{
       const last_element = currentApi.findLast((item) => true);
       currentActiveTab(last_element?.text, true)
+      // eslint-disable-next-line 
     },[currentApi])
 
     const currentCall = (e) =>{

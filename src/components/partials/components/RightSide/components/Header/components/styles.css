@@ -46,3 +46,16 @@
 .api-header-input{
   border: 1px solid gray !important;
 }
+
+.request-header-stack{
+  border: 1px solid gray;
+
+}
+.request-header-box{
+  border-style: solid;
+  border-width: 0 1px 0;
+  border-color: gray;
+}
+.request-header-active-class {
+  border-bottom: 2px solid gray;
+}
