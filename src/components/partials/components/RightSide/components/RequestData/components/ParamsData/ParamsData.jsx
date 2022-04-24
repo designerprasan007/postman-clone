@@ -9,10 +9,38 @@ import {
   Input,
   Checkbox
 } from '@chakra-ui/react'
+import { useState } from 'react'
 
 import {getParams} from '../../../../../../../../services/auth/helpers'
 const ParamsData = ({calledApi}) => {
-    const params = calledApi[0]?.text ? getParams(calledApi[0]?.text) : ""
+  const params = calledApi[0]?.text ? getParams(calledApi[0]?.text) : "";
+  const [paramsValue, setParamsValue] = useState(params)
+
+  const handleRowDisable = (event) =>{
+      const tr = event.target.parentNode.parentNode.parentNode
+      const td = event.target.parentNode.parentNode.parentNode.childNodes;
+      if(tr.hasAttribute("style")){
+        tr.removeAttribute("style")
+        for(var i= 0; i < td.length; i++){
+          td[i].childNodes.disabled = false
+      }
+      }
+      else{
+        tr.style.cssText = `
+        background-color: grey;`;
+        for(var i= 0; i < td.length; i++){
+            td[i].childNodes.disabled = true
+        }
+      }
+    }
+    const handleParamsChange = (val, key, value) =>{
+      // const newparams = {...paramsValue};
+      // console.log(newparams)
+      // newparams[index] = val;
+      setParamsValue({ ...paramsValue, value: val });
+      console.log(paramsValue)
+
+    } 
     return (
     <div>
       <TableContainer>
@@ -26,15 +54,15 @@ const ParamsData = ({calledApi}) => {
           </Thead>
           <Tbody>
           {
-            Object.entries(params).map(([key, value]) => {
+            Object.entries(params).map(([key, value],  index) => {
               return(
                 <Tr key={key}>
-                  <Td><Checkbox></Checkbox></Td>
+                  <Td><Checkbox defaultChecked onChange={handleRowDisable}></Checkbox></Td>
                   <Td>
-                    <Input placeholder='small size' size='sm' value={key} />
+                    <Input onChange={(e) => handleParamsChange(e.target.value, key)} placeholder='small size' size='sm' value={paramsValue.key ? paramsValue.key : key} />
                   </Td>
                   <Td>
-                    <Input placeholder='small size' size='sm' value={value} />
+                    <Input placeholder='small size' onChange={(e) => handleParamsChange(e.target.value, value)} size='sm' value={paramsValue.value ? paramsValue.value : value} />
                   </Td>
                 </Tr>
               )  

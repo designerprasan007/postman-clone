@@ -1,10 +1,11 @@
 import React from 'react'
 import ParamsData from './components/ParamsData/ParamsData'
-
-const RequestData = ({calledApi}) => {
+import HeadersData from './components/HeadersData/HeadersData'
+const RequestData = ({calledApi, activeHeader}) => {
   return (
     <div>
-        <ParamsData calledApi={calledApi} />
+      {activeHeader === 'Params' && <ParamsData calledApi={calledApi} />}
+      {activeHeader === 'Headers' && <HeadersData calledApi={calledApi} />}
     </div>
   )
 }
