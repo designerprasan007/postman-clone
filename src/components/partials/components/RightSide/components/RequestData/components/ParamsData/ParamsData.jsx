@@ -21,14 +21,14 @@ const ParamsData = ({calledApi}) => {
       const td = event.target.parentNode.parentNode.parentNode.childNodes;
       if(tr.hasAttribute("style")){
         tr.removeAttribute("style")
-        for(var i= 0; i < td.length; i++){
+        for(let i= 0; i < td.length; i++){
           td[i].childNodes.disabled = false
       }
       }
       else{
         tr.style.cssText = `
         background-color: grey;`;
-        for(var i= 0; i < td.length; i++){
+        for(let i= 0; i < td.length; i++){
             td[i].childNodes.disabled = true
         }
       }

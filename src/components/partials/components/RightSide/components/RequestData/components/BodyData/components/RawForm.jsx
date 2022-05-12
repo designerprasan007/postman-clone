@@ -1,9 +1,11 @@
-import React from 'react'
+import { Textarea } from '@chakra-ui/react'
 
-const rawForm = () => {
+const RawForm = () => {
   return (
-    <div>rawForm</div>
+    <div>
+      <Textarea size="md"  rows="15" isInvalid="true" variant="unstyled" placeholder='{key: value}'  />
+    </div>
   )
 }
 
-export default rawForm
+export default RawForm

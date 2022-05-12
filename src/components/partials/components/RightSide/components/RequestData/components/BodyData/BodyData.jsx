@@ -7,7 +7,7 @@ import {useState} from 'react'
 import FormData from './components/FormData'
 import RawForm from './components/RawForm'
 
-const BodyData = () => {
+const BodyData = ({calledApi}) => {
   const [activeBody, setActiveBody] = useState('none')
   return (
     <>
@@ -18,7 +18,7 @@ const BodyData = () => {
         <Radio value='raw'>raw</Radio>
       </Stack>
     </RadioGroup>
-    {activeBody === 'form-data' && <FormData />}
+    {activeBody === 'form-data' && <FormData calledApi={calledApi} />}
     {activeBody === 'raw' && <RawForm />}
 
     </>

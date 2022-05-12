@@ -2,113 +2,14 @@ import { useEffect, useState } from 'react'
 import Header from '../../partials/components/Header/Header'
 import LeftSide from '../../partials/components/LeftSide/LeftSide'
 import RightSide from '../../partials/components/RightSide/RightSide'
+import {useSelector} from 'react-redux';
+
 const Home = () =>{
     const [showRighView, setShowRightView] = useState(false)
     const [currentApi, setCurrentApi] = useState([])
     const [calledApi, setcalledApi] = useState()
 
-    const LIST = [
-        {
-          id: '1',
-          title: "Content 1",
-          text:"http://localhost:3000/get1?param1=a&param2=b",
-          method:"get",
-          apiTitle:"get-product1",
-          apiBody:[{
-            
-          }],
-          apiHeaders:[{
-            "key":"contentType",
-            "value":"file/pdf",
-            "isDisable":true
-          }],
-          apicalls: [
-            {
-              id: "1a",
-              title: "Test 1 A",
-              text:"http://localhost:3000/get1a",
-              method:"get",
-              apiTitle:"",
-              apiBody:[{
-                
-              }],
-              apiHeaders:[{
-                "key":"contentType",
-                "value":"application/json",
-                "isDisable":true
-              }],
-    
-            },
-            { id: "1b", 
-            title: "Test 1 B", 
-            text: "http://localhost:3000/get1b",
-            method:"get",
-            apiTitle:"get-product2b",
-            apiBody:[{
-              
-            }],
-            apiHeaders:[{
-              "key":"contentType",
-              "value":"file/img",
-              "isDisable":true
-            }],
-          }
-          ]
-        },
-        {
-          id: '2',
-          title: "Content 2",
-          apicalls: [
-            {
-              id: "2b",
-              title: "Test 1 B",
-              text:"http://localhost:3000/get2",
-              method:"get",
-              apiTitle:"",
-              apiBody:[{
-                
-              }],
-              apiHeaders:[{
-                "key":"contentType",
-                "value":"file/mp3",
-                "isDisable":true
-              }],
-              apicalls: [
-                {
-                  id: "2b",
-                  title: "Test 1 A B",
-                  text: "http://localhost:3000/get2a",
-                  method:"get",
-                  apiTitle:"",
-                  apiBody:[{
-                    
-                  }],
-                  apiHeaders:[{
-                    "key":"contentType",
-                    "value":"file/video",
-                    "isDisable":true
-                  }],
-                }
-              ]
-            },
-            { id: "2c", 
-            title: "Test 1 B", 
-            text: "http://localhost:3000/get2b",
-            method:"get",
-            apiTitle:"",
-            apiBody:[{
-              
-            }],
-            apiHeaders:[{
-              "key":"contentType",
-              "value":"file/png",
-              "isDisable":true
-            }],
-          }
-          ]
-        }
-      ];
-      
+    const LIST = useSelector((state) => state.PostManReducer);
       
     useEffect(() =>{
       const last_element = currentApi.findLast((item) => true);
@@ -150,7 +51,7 @@ const Home = () =>{
     }
    
     return(
-        <div>
+        <div className='mainOuter'>
             <Header />
             <div className='row g-0'>
                 <div className='col-md-3 col-lg-3'>

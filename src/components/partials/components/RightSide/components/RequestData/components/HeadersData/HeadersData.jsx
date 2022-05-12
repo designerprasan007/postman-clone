@@ -13,8 +13,8 @@ import {
   } from '@chakra-ui/react'
 import {FaPlus} from 'react-icons/fa'
 
-  import { useState, useEffect } from 'react'
-  import './HeadersData.css'
+import { useState, useEffect } from 'react'
+import './HeadersData.css'
 
 
   const HeadersData = ({calledApi}) => {
@@ -22,7 +22,7 @@ import {FaPlus} from 'react-icons/fa'
     const [headerValues, setHeaderValues,] = useState([])
 
     useEffect(() =>{
-      setHeaderValues(calledApi[0]?.apiHeaders)
+      setHeaderValues(calledApi[0]?.headers)
     },[calledApi])
 
     const handleRowDisable = (index) =>{
