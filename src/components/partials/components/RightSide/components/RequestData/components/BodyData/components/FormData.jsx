@@ -11,20 +11,18 @@ import {
   CloseButton
 } from '@chakra-ui/react'
 import {FaPlus} from 'react-icons/fa'
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
 
-const FormData = ({calledApi}) => {
-  
-  const [bodyValues, setBodyValues] = useState([])
+const FormData = ({calledApi, formDataValues, setFormDataValues}) => {
 
   useEffect(() =>{
-    setBodyValues(calledApi[0]?.body || [])
-  },[calledApi])
+    setFormDataValues(calledApi[0]?.body || formDataValues)
+  },[calledApi, formDataValues, setFormDataValues])
 
   const addBodyValues = () =>{
-    const isEmptyField = bodyValues.some((val) => val.key === "" || val.value === "");
+    const isEmptyField = formDataValues.some((val) => val.key === "" || val.value === "");
     if(!isEmptyField){
-      setBodyValues([...bodyValues, { key:"",
+      setFormDataValues([...formDataValues, { key:"",
         "value":""}])
       }
     else{
@@ -36,13 +34,13 @@ const FormData = ({calledApi}) => {
       const name = event.target.name;
       const val = event.target.value;
 
-      let values = [...bodyValues];
+      let values = [...formDataValues];
       values[index][name] = val
-      setBodyValues(values)
+      setFormDataValues(values)
     }
 
     const removeBodyValue = (index) =>{
-      setBodyValues((prevState) =>
+      setFormDataValues((prevState) =>
         prevState.filter((prevItem, i) => i !== index)
     );
     }
@@ -58,7 +56,7 @@ const FormData = ({calledApi}) => {
               </Tr>
             </Thead>
             <Tbody>
-              {bodyValues.map((val, index) =>{
+              {formDataValues.map((val, index) =>{
                 return(
                   <Tr key={index}>
                       <Td><Input size='md' variant='outline' name="key" onChange={(event) => handleBodyValue(event, index)} value={val.key} /></Td>
@@ -72,8 +70,8 @@ const FormData = ({calledApi}) => {
             </Tbody>
           </Table>
         </TableContainer>
-        <Button className='addButton'colorScheme='teal' size='md'>
-          <FaPlus onClick={addBodyValues} />
+        <Button onClick={addBodyValues} className='addButton'colorScheme='teal' size='md'>
+          <FaPlus  />
         </Button>
     </div>
   )

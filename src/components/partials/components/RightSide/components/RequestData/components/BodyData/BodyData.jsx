@@ -3,12 +3,10 @@ import {
   Radio,
   Stack
 } from '@chakra-ui/react'
-import {useState} from 'react'
 import FormData from './components/FormData'
 import RawForm from './components/RawForm'
 
-const BodyData = ({calledApi}) => {
-  const [activeBody, setActiveBody] = useState('none')
+const BodyData = ({calledApi, activeBody, setActiveBody, formDataValues, setFormDataValues}) => {
   return (
     <>
       <RadioGroup pt="5" ps="3" onChange={setActiveBody} value={activeBody}>
@@ -18,7 +16,7 @@ const BodyData = ({calledApi}) => {
         <Radio value='raw'>raw</Radio>
       </Stack>
     </RadioGroup>
-    {activeBody === 'form-data' && <FormData calledApi={calledApi} />}
+    {activeBody === 'form-data' && <FormData calledApi={calledApi} formDataValues={formDataValues} setFormDataValues={setFormDataValues} />}
     {activeBody === 'raw' && <RawForm />}
 
     </>
